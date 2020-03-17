@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>List Repositories Power</title>
+  <title>Tarefa 2</title>
 </head>
 
 <body>
@@ -16,60 +16,28 @@
     var listElement = document.querySelector('ul');
     var inputElement = document.querySelector('input');
 
-    function renderRepositories(repositories, user) {
-      listElement.innerHTML = "";
-      if (repositories.length > 0){
-        for (repo of repositories) {
-          const textElement = document.createTextNode(repo.name);
-          const liElement = document.createElement('li');
-          liElement.appendChild(textElement);
-          listElement.appendChild(liElement);
-        }
-      }else{
-        renderNoRepositories(user);
+    function renderRepositories(repositories) {
+      for (repo of repositories) {
+        const textElement = document.createTextNode(repo.name);
+        const liElement = document.createElement('li');
+        liElement.appendChild(textElement);
+        listElement.appendChild(liElement);
       }
     }
-
-    function renderLoading() {
-      listElement.innerHTML = "";
-      var textElement = document.createTextNode('Carregando...');
-      var loadingElement = document.createElement('li');
-      loadingElement.appendChild(textElement);
-      listElement.appendChild(loadingElement);
+    function messageUserNotFound(user){
+      alert(`Usuário "${user}" não encontrado...`);
     }
-
-    function renderNoRepositories(user) {
-      var textElement = document.createTextNode(`Aviso: Usuário "${user}" encontrado, porém não possui repositórios...`);
-      var warningElement = document.createElement('li');
-      warningElement.style.color = "#EEAD2D";
-      warningElement.appendChild(textElement);
-      listElement.appendChild(warningElement);
-    }
-
-    function renderError(user) {
-      listElement.innerHTML = "";
-      var textElement = document.createTextNode(`Erro: Usuário "${user}" não encontrado...`);
-      var errorElement = document.createElement('li');
-      errorElement.style.color = "#F00";
-      errorElement.appendChild(textElement);
-      listElement.appendChild(errorElement);
-    }
-
     function listRepositories() {
       var user = inputElement.value;
       if (!user) return;
-      renderLoading();
       axios.get('https://api.github.com/users/' + user + '/repos')
         .then(function (response) {
-          console.log(response);
-          renderRepositories(response.data, user);
+          renderRepositories(response.data);
+        }).catch(function (error){
+          console.log(error);
+          messageUserNotFound(user);
         })
-        .catch(function (error) {
-          console.warn(error);
-          renderError(user);
-        });
     }
-
   </script>
 </body>
 

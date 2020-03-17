@@ -14,7 +14,6 @@
 
 #### 1. Introdução 
 - Interpretar scripts na interface do navegador no ambiente do cliente.
-- Comunidade javascript.
 
 #### 2. Configuração Ambiente 
 - Visual Studio Code
@@ -26,8 +25,8 @@
 
 ````javascript
 	var nome = "Danilo";//string
-	var idade = 29;//inteiro
-	var peso = 80.5;//decimal
+	var idade = 35;//inteiro
+	var peso = 105.5;//decimal
 	var humano = true;//boolean
 	var alunos = ['Danilo', 'Roberto', 'Lucas'];//vetor
 	var aluno = {//objeto
@@ -95,7 +94,7 @@
 
 - and
 ````javascript        
-	var sexo = 'M', idade = 23;
+	var sexo = 'M', idade = 35;
 	if(sexo === 'M' && idade >=18){
 	    console.log('OK');
 	}
@@ -286,11 +285,11 @@
 ````
 
 #### 2. Trabalhando com a DOM 
-- objetivo é buscar as informações nos elementos da DOM
+- Objetivo é buscar as informações nos elementos da DOM
 - getElementsByTagName
 - getElementsByClassName
 - getElementsById 
-- manipulando elementos da nossa DOM
+- Manipulando elementos da nossa DOM
 ````html
 	<div id="app">
 		<input type="text" name="nome"/>
@@ -361,10 +360,9 @@
 - arquivo pdf : desafio2-manipulandoDOM.pdf 
 - Tarefa 1
 ````html
-	<button class='botao' id='btnCriar' onClick="gerarQuadrado()">Gerar novo</button>
-	<div id="app">
-		<div class="box"></div>
-	</div>
+	<button class='botao' id='btnCriar' onClick="gerarQuadrado()">Gerar Quadrado Vermelho</button>
+	<body>
+	</body>
 	<script>        
 		function gerarQuadrado() {
 
@@ -384,10 +382,9 @@
 ````
 - Tarefa 2
 ````html
-	<button class='botao' id='btnCriar' onClick="gerarQuadrado()" >Gerar novo</button>
-	<div id="app">
-		<div class="box" onmouseover="trocarCor(this)"></div>
-	</div>
+	<button class='botao' id='btnCriar' onClick="gerarQuadrado()" >Gerar Quadrado Vermelho</button>
+	<body>
+	</body>
 	<script>        
 
 		function gerarQuadrado() {
@@ -405,9 +402,6 @@
 				boxElement.style.backgroundColor = newColor;
 			});
 
-			//adiciona a classe .box na div criada
-			boxElement.classList.add('box');
-
 			document.body.appendChild(boxElement);
 		}
 
@@ -424,8 +418,9 @@
 ````
 - Tarefa 3 
 ````html
-	<script>
-		var nomes = ["Diego", "Lucas", "Gabriel", "Lucas"];
+	<body></body>
+    <script>
+		var nomes = ["Danilo", "Lucas", "Gabriel", "Marcelo"];
 
 		var element = document.body;
 
@@ -498,7 +493,7 @@
     <body>
         <div id="app">
             <ul></ul>
-            <input type="text" placeholder="Digite um todo">
+            <input type="text" placeholder="Digite um Todo">
             <button>Adicionar</button>
         </div>
         <script src="todos.js"></script>
@@ -568,7 +563,7 @@ function saveToStorage(){
 ````javascript
 var xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'https://api.github.com/users/diego3g');
+xhr.open('GET', 'https://api.github.com/users/reluviari');
 xhr.send(null);
 
 xhr.onreadystatechange = function(){
@@ -577,7 +572,6 @@ xhr.onreadystatechange = function(){
     }
 }
 ````
-- Arquivo `index.html`
 - Consumir as informações do serviços
 
 #### 2. Promises
@@ -587,7 +581,7 @@ var myPromise = function() {
 
     return new Promise(function(resolve, reject){
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://api.github.com/users/diego3g');
+        xhr.open('GET', 'https://api.github.com/users/reluviari');
         xhr.send(null);
 
         xhr.onreadystatechange = function(){
@@ -616,9 +610,9 @@ myPromise()
 - `https://github.com/axios/axios`
 - `npm install axios`
 
-- main.js
+- main.js - exemplo
 ````javascript
-axios.get('https://api.github.com/users/diego3g')
+axios.get('https://api.github.com/users/reluviari')
     .then(function(response) {
         console.log(response);
     })
@@ -626,7 +620,7 @@ axios.get('https://api.github.com/users/diego3g')
         console.warn(error);
     });
 ````
-- index.html
+- index.html - exemplo
 ````html
 <html>
     <head>
@@ -641,20 +635,19 @@ axios.get('https://api.github.com/users/diego3g')
 ````
 
 #### Desafio
-- index.html
+- Tarefa 0 - index.html e main.js
 ````html
 <html>
     <head>
-        <title>Javascript-@relviari</title>
+        <title>Tarefa 0</title>
     </head>
-    <body>
-        @reluviari
+    <body
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="main.js"></script>
     </body>
 </html>
 ````
-- Tarefa 1
+
 ````javascript
 function checaIdade(idade) {
     return new Promise(function(resolve, reject) {
@@ -672,13 +665,13 @@ function checaIdade(idade) {
       console.log("Menor que 18");
     });
 ````
-- Tarefa 2
+- Tarefa 2 - 2_list_repositories.html
 ````html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Exercício 02</title>
+  <title>Tarefa 2</title>
 </head>
 
 <body>
@@ -691,6 +684,7 @@ function checaIdade(idade) {
   <script>
     var listElement = document.querySelector('ul');
     var inputElement = document.querySelector('input');
+
     function renderRepositories(repositories) {
       for (repo of repositories) {
         const textElement = document.createTextNode(repo.name);
@@ -698,6 +692,9 @@ function checaIdade(idade) {
         liElement.appendChild(textElement);
         listElement.appendChild(liElement);
       }
+    }
+    function messageUserNotFound(user){
+      alert(`Usuário "${user}" não encontrado...`);
     }
     function listRepositories() {
       var user = inputElement.value;
@@ -705,6 +702,9 @@ function checaIdade(idade) {
       axios.get('https://api.github.com/users/' + user + '/repos')
         .then(function (response) {
           renderRepositories(response.data);
+        }).catch(function (error){
+          console.log(error);
+          messageUserNotFound(user);
         })
     }
   </script>
@@ -712,13 +712,13 @@ function checaIdade(idade) {
 
 </html>
 ````
-- Tarefa 3
+- Tarefa 3 - 3_list_repositories.html
 ````html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Exercício 03</title>
+  <title>Tarefa 3 - Power</title>
 </head>
 
 <body>
@@ -731,47 +731,63 @@ function checaIdade(idade) {
   <script>
     var listElement = document.querySelector('ul');
     var inputElement = document.querySelector('input');
-    function renderRepositories(repositories) {
+
+    function renderRepositories(repositories, user) {
       listElement.innerHTML = "";
-      for (repo of repositories) {
-        const textElement = document.createTextNode(repo.name);
-        const liElement = document.createElement('li');
-        liElement.appendChild(textElement);
-        listElement.appendChild(liElement);
+      if (repositories.length > 0){
+        for (repo of repositories) {
+          const textElement = document.createTextNode(repo.name);
+          const liElement = document.createElement('li');
+          liElement.appendChild(textElement);
+          listElement.appendChild(liElement);
+        }
+      }else{
+        renderNoRepositories(user);
       }
     }
-    function renderLoading(loading) {
+
+    function renderLoading() {
       listElement.innerHTML = "";
       var textElement = document.createTextNode('Carregando...');
       var loadingElement = document.createElement('li');
       loadingElement.appendChild(textElement);
       listElement.appendChild(loadingElement);
     }
-    function renderError(loading) {
+
+    function renderNoRepositories(user) {
+      var textElement = document.createTextNode(`Aviso: Usuário "${user}" encontrado, porém não possui repositórios...`);
+      var warningElement = document.createElement('li');
+      warningElement.style.color = "#EEAD2D";
+      warningElement.appendChild(textElement);
+      listElement.appendChild(warningElement);
+    }
+
+    function renderError(user) {
       listElement.innerHTML = "";
-      var textElement = document.createTextNode('Erro!');
+      var textElement = document.createTextNode(`Erro: Usuário "${user}" não encontrado...`);
       var errorElement = document.createElement('li');
       errorElement.style.color = "#F00";
       errorElement.appendChild(textElement);
       listElement.appendChild(errorElement);
     }
+
     function listRepositories() {
       var user = inputElement.value;
       if (!user) return;
       renderLoading();
       axios.get('https://api.github.com/users/' + user + '/repos')
         .then(function (response) {
-          renderRepositories(response.data);
+          console.log(response);
+          renderRepositories(response.data, user);
         })
-        .catch(function () {
-          renderError();
+        .catch(function (error) {
+          console.warn(error);
+          renderError(user);
         });
     }
+
   </script>
 </body>
 
 </html>
 ````
-
-:. De Rocketseat - Starter - Javascript.<br>
-Por Diego Fernandes : https://skylab.rocketseat.com.br/node/curso-java-script/group/introducao-java-script/lesson/configurando-ambiente-3
